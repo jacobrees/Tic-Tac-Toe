@@ -7,7 +7,10 @@
 }
 
 /* XL devices (default) */
-/* ...code... */
+body {
+  background-color: #72008f;
+}
+
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
   /* ...code... */

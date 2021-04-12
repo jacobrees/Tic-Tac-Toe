@@ -2,8 +2,8 @@
 
 $big-font: 'Fredoka One', cursive;
 $small-font: 'Varela Round', sans-serif;
-$bg-purple: 72008f;
-$main-purple: 2c0539;
+$bg-purple: #72008f;
+$main-purple: #2c0539;
 
 * {
   margin: 0;
@@ -13,7 +13,9 @@ $main-purple: 2c0539;
 
 /* XL devices (default) */
 
-/* ...code... */
+body {
+  background-color: $bg-purple;
+}
 
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
