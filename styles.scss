@@ -25,6 +25,14 @@ body {
   padding: 20px 0;
 }
 
+.nav2 {
+  width: 100%;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
 .tic-tac-toe-board {
   display: grid;
   grid-template-columns: 33% 33% 33%;
