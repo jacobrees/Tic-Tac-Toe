@@ -76,16 +76,16 @@ body {
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
   .tic-tac-toe-board {
-    width: 55vw;
-    height: 55vw;
+    width: 50vw;
+    height: 50vw;
   }
 }
 
 /* Medium devices */
 @media only screen and (max-width: 991.98px) {
   .tic-tac-toe-board {
-    width: 70vw;
-    height: 70vw;
+    width: 65vw;
+    height: 65vw;
   }
 }
 
