@@ -36,6 +36,14 @@ body {
 
 .square {
   border: $main-purple solid 5px;
+
+  p {
+    width: 100%;
+    height: 100%;
+    font-size: 130px;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .bdr-top-none {
