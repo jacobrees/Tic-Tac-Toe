@@ -36,13 +36,14 @@ body {
 
 .square {
   border: $main-purple solid 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  p {
-    width: 100%;
-    height: 100%;
-    font-size: 130px;
-    display: flex;
-    justify-content: center;
+  img {
+    width: 95%;
+    height: 95%;
+    filter: invert(2%) sepia(68%) saturate(6425%) hue-rotate(284deg) brightness(82%) contrast(100%);
   }
 }
 
@@ -74,5 +75,5 @@ body {
 
 /* Small devices */
 @media only screen and (max-width: 767.98px) {
-  /* ...code... */
+
 }
