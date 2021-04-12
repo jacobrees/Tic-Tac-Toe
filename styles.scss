@@ -25,6 +25,35 @@ body {
   padding: 20px 0;
 }
 
+.tic-tac-toe-board {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 33%;
+  margin: 15px auto;
+  width: 470px;
+  height: 470px;
+}
+
+.square {
+  border: $main-purple solid 5px;
+}
+
+.bdr-top-none {
+  border-top: none;
+}
+
+.bdr-left-none {
+  border-left: none;
+}
+
+.bdr-right-none {
+  border-right: none;
+}
+
+.bdr-bottom-none {
+  border-bottom: none;
+}
+
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
   /* ...code... */
