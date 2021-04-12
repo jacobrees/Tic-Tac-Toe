@@ -1,20 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Varela+Round&display=swap');
-
-$big-font: 'Fredoka One', cursive;
-$small-font: 'Varela Round', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+$font: 'Varela Round', sans-serif;
 $bg-purple: #72008f;
-$main-purple: #2c0539;
+$main-purple: #16021d;
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: $font;
+  color: $main-purple;
 }
 
 /* XL devices (default) */
 
 body {
   background-color: $bg-purple;
+}
+
+.nav {
+  width: 100%;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 }
 
 /* Large devices */

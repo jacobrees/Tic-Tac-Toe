@@ -1,14 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: "Varela Round", sans-serif;
+  color: #16021d;
 }
 
 /* XL devices (default) */
 body {
   background-color: #72008f;
+}
+
+.nav {
+  width: 100%;
+  font-size: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px 0;
 }
 
 /* Large devices */
