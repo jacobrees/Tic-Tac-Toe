@@ -91,6 +91,9 @@ body {
   height: 100%;
   position: fixed;
   top: 0;
+  opacity: 1;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 .modes {
@@ -124,6 +127,11 @@ body {
   margin-bottom: 40px;
 }
 
+.hide-menu {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
   .tic-tac-toe-board {
@@ -145,6 +153,9 @@ body {
   .tic-tac-toe-board {
     width: 97vw;
     height: 97vw;
+  }
+  .nav {
+    font-size: 35px;
   }
   .modes {
     -webkit-box-orient: vertical;
