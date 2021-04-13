@@ -125,6 +125,12 @@ body {
   cursor: pointer;
   padding: 5px 5px;
   margin-bottom: 40px;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.play-btn:hover {
+  opacity: 0.8;
 }
 
 .hide-menu {

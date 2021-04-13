@@ -103,6 +103,11 @@ body {
   cursor: pointer;
   padding: 5px 5px;
   margin-bottom: 40px;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .hide-menu {
