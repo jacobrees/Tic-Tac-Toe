@@ -31,18 +31,19 @@ const playerTurn = document.querySelector('.player-turn');
 
 const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
 
-const playerMove = (square) => {
+const playerMove = (square, index) => {
   square.addEventListener('click', (e) => {
     e.currentTarget.innerHTML = insertSymbol(currentPlayer);
     switchPlayer();
     playerTurn.textContent = `Player ${currentPlayer} Turn`;
+    console.log(index)
   }, { once: true });
 };
 
 const initialize = () => {
-  squares.forEach((square) => {
+  squares.forEach((square, index) => {
     square.innerHTML = '';
-    playerMove(square);
+    playerMove(square, index);
   });
 };
 
