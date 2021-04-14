@@ -16,10 +16,7 @@ player2Btn.addEventListener('click', () => {
 
 const squares = document.querySelectorAll('.square');
 
-
 let currentPlayer = 'x';
-
-const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
 
 const switchPlayer = () => {
   if (currentPlayer === 'x') {
@@ -28,6 +25,8 @@ const switchPlayer = () => {
     currentPlayer = 'x';
   }
 };
+
+const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
 
 const playerMove = (square) => {
   square.addEventListener('click', (e) => {
