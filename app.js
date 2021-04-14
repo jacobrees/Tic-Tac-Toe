@@ -1,8 +1,8 @@
 const player1Btn = document.querySelector('.player1-btn');
 const player2Btn = document.querySelector('.player2-btn');
-const menu = document.querySelector('.menu');
 
 const toggleMenu = () => {
+  const menu = document.querySelector('.menu');
   menu.classList.toggle('hide-menu');
 };
 
@@ -15,8 +15,6 @@ player2Btn.addEventListener('click', () => {
 });
 
 
-const playerTurn = document.querySelector('.player-turn');
-
 let currentPlayer = 'X';
 
 const switchPlayer = () => {
@@ -25,12 +23,9 @@ const switchPlayer = () => {
   } else {
     currentPlayer = 'X';
   }
-
+  const playerTurn = document.querySelector('.player-turn');
   playerTurn.textContent = `Player ${currentPlayer} Turn`;
 };
-
-
-const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
 
 
 const fadeImg = (e) => {
@@ -40,6 +35,7 @@ const fadeImg = (e) => {
 };
 
 const addImg = (e) => {
+  const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
   e.currentTarget.innerHTML = insertSymbol(currentPlayer);
   fadeImg(e);
 };
@@ -53,9 +49,9 @@ const playerMove = (square, index) => {
   }, { once: true });
 };
 
-const squares = document.querySelectorAll('.square');
 
 const initialize = () => {
+  const squares = document.querySelectorAll('.square');
   squares.forEach((square, index) => {
     square.innerHTML = '';
     playerMove(square, index);
