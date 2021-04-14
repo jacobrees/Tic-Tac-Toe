@@ -1,10 +1,10 @@
-const player1Btn = document.querySelector('.player1-btn');
-const player2Btn = document.querySelector('.player2-btn');
-
 const toggleMenu = () => {
   const menu = document.querySelector('.menu');
   menu.classList.toggle('hide-menu');
 };
+
+const player1Btn = document.querySelector('.player1-btn');
+const player2Btn = document.querySelector('.player2-btn');
 
 player1Btn.addEventListener('click', () => {
   toggleMenu();
