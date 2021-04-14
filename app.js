@@ -16,9 +16,30 @@ player2Btn.addEventListener('click', () => {
 
 const squares = document.querySelectorAll('.square');
 
+
+let currentPlayer = 'x';
+
+const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
+
+const switchPlayer = () => {
+  if (currentPlayer === 'x') {
+    currentPlayer = 'o';
+  } else {
+    currentPlayer = 'x';
+  }
+};
+
+const playerMove = (square) => {
+  square.addEventListener('click', (e) => {
+    e.currentTarget.innerHTML = insertSymbol(currentPlayer);
+    switchPlayer();
+  });
+};
+
 const initialize = () => {
   squares.forEach((square) => {
     square.innerHTML = '';
+    playerMove(square);
   });
 };
 
