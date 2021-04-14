@@ -2,6 +2,7 @@
 $font: 'Varela Round', sans-serif;
 $bg-purple: #72008f;
 $main-purple: #16021d;
+$fade: all 0.25s ease-in-out;
 
 * {
   margin: 0;
@@ -52,6 +53,8 @@ body {
     width: 95%;
     height: 95%;
     filter: invert(2%) sepia(68%) saturate(6425%) hue-rotate(284deg) brightness(82%) contrast(100%);
+    transition: $fade;
+    opacity: 0;
   }
 }
 
@@ -78,7 +81,7 @@ body {
   position: fixed;
   top: 0;
   opacity: 1;
-  transition: all 0.25s ease-in-out;
+  transition: $fade;
 }
 
 .select-game1 {

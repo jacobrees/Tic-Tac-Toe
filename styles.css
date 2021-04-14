@@ -67,6 +67,9 @@ body {
   height: 95%;
   -webkit-filter: invert(2%) sepia(68%) saturate(6425%) hue-rotate(284deg) brightness(82%) contrast(100%);
           filter: invert(2%) sepia(68%) saturate(6425%) hue-rotate(284deg) brightness(82%) contrast(100%);
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  opacity: 0;
 }
 
 .bdr-top-none {
