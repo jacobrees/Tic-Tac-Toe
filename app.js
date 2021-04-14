@@ -30,6 +30,7 @@ const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"><
 
 const playerMove = (square) => {
   square.addEventListener('click', (e) => {
+    e.currentTarget.removeEventListener('click', e, false);
     e.currentTarget.innerHTML = insertSymbol(currentPlayer);
     switchPlayer();
   });
