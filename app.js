@@ -36,8 +36,7 @@ const playerMove = (square) => {
     e.currentTarget.innerHTML = insertSymbol(currentPlayer);
     switchPlayer();
     playerTurn.textContent = `Player ${currentPlayer} Turn`;
-    e.currentTarget.removeEventListener('click', e);
-  });
+  }, { once: true });
 };
 
 const initialize = () => {
