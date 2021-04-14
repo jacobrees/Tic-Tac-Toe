@@ -16,23 +16,27 @@ player2Btn.addEventListener('click', () => {
 
 const squares = document.querySelectorAll('.square');
 
-let currentPlayer = 'x';
+let currentPlayer = 'X';
 
 const switchPlayer = () => {
-  if (currentPlayer === 'x') {
-    currentPlayer = 'o';
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O';
   } else {
-    currentPlayer = 'x';
+    currentPlayer = 'X';
   }
 };
+
+const playerTurn = document.querySelector('.player-turn');
+
 
 const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
 
 const playerMove = (square) => {
   square.addEventListener('click', (e) => {
-    e.currentTarget.removeEventListener('click', e, false);
     e.currentTarget.innerHTML = insertSymbol(currentPlayer);
     switchPlayer();
+    playerTurn.textContent = `Player ${currentPlayer} Turn`;
+    e.currentTarget.removeEventListener('click', e);
   });
 };
 
