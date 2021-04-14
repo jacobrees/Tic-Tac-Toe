@@ -3,18 +3,6 @@ const toggleMenu = () => {
   menu.classList.toggle('hide-menu');
 };
 
-const player1Btn = document.querySelector('.player1-btn');
-const player2Btn = document.querySelector('.player2-btn');
-
-player1Btn.addEventListener('click', () => {
-  toggleMenu();
-});
-
-player2Btn.addEventListener('click', () => {
-  toggleMenu();
-});
-
-
 let currentPlayer = 'X';
 
 const switchPlayer = () => {
@@ -49,7 +37,6 @@ const playerMove = (square, index) => {
   }, { once: true });
 };
 
-
 const initialize = () => {
   const squares = document.querySelectorAll('.square');
   squares.forEach((square, index) => {
@@ -58,4 +45,15 @@ const initialize = () => {
   });
 };
 
-initialize();
+const player1Btn = document.querySelector('.player1-btn');
+const player2Btn = document.querySelector('.player2-btn');
+
+player1Btn.addEventListener('click', () => {
+  toggleMenu();
+  initialize();
+});
+
+player2Btn.addEventListener('click', () => {
+  toggleMenu();
+  initialize();
+});
