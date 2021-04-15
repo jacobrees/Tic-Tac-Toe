@@ -88,14 +88,12 @@ const initialize = () => {
 const player1Btn = document.querySelector('.player1-btn');
 const player2Btn = document.querySelector('.player2-btn');
 
-player1Btn.addEventListener('click', (e) => {
-
+player1Btn.addEventListener('click', () => {
   toggleMenu();
   initialize();
 });
 
-player2Btn.addEventListener('click', (e) => {
-
+player2Btn.addEventListener('click', () => {
   toggleMenu();
   initialize();
 });
