@@ -24,16 +24,19 @@ const winningPossibilities = [// eslint-disable-line
 const xPlayerMoves = [];
 const oPlayerMoves = [];
 
-const playerMove = (e, index) => {
-  const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
-  e.currentTarget.innerHTML = insertSymbol(currentPlayer);
-  fadeImg(e);
-
+const logMove = (index) => {
   if (currentPlayer === 'X') {
     xPlayerMoves.push(index);
   } else {
     oPlayerMoves.push(index);
   }
+};
+
+const playerMove = (e, index) => {
+  const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
+  e.currentTarget.innerHTML = insertSymbol(currentPlayer);
+  fadeImg(e);
+  logMove(index);
 };
 
 const setBoard = (square, index) => {
