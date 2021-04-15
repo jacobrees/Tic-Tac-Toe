@@ -17,9 +17,6 @@ const fadeImg = (e) => {
   img.style.opacity = 1;
 };
 
-const winningPossibilities = [// eslint-disable-line
-  [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8],
-];
 
 let xPlayerMoves = [];
 let oPlayerMoves = [];
@@ -47,6 +44,10 @@ const toggleMenu = () => {
 const testWinner = () => {
   let win = false;
   const checker = (arr, target) => target.every((v) => arr.includes(v));
+  const winningPossibilities = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8],
+  ];
+
   winningPossibilities.forEach((array) => {
     if (checker(xPlayerMoves, array)) {
       console.log('xwin');
