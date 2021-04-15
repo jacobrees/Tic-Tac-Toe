@@ -21,8 +21,8 @@ const winningPossibilities = [// eslint-disable-line
   [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8],
 ];
 
-const xPlayerMoves = [];
-const oPlayerMoves = [];
+let xPlayerMoves = [];
+let oPlayerMoves = [];
 
 const logMove = (index) => {
   if (currentPlayer === 'X') {
@@ -39,22 +39,34 @@ const playerMove = (e, index) => {
   logMove(index);
 };
 
+const toggleMenu = () => {
+  const menu = document.querySelector('.menu');
+  menu.classList.toggle('hide-menu');
+};
+
 const testWinner = () => {
+  let win = false;
   const checker = (arr, target) => target.every((v) => arr.includes(v));
   winningPossibilities.forEach((array) => {
     if (checker(xPlayerMoves, array)) {
       console.log('xwin');
+      win = true;
+      toggleMenu();
     } else if (checker(oPlayerMoves, array)) {
       console.log('owin');
+      win = true;
+      toggleMenu();
     }
   });
-  if (xPlayerMoves.concat(oPlayerMoves).length === 9) {
+  if (xPlayerMoves.concat(oPlayerMoves).length === 9 && !win) {
     console.log('draw');
+    toggleMenu();
   }
 };
 
 const setBoard = (square, index) => {
   square.addEventListener('click', (e) => {
+    e.stopImmediatePropagation();
     playerMove(e, index);
     testWinner();
     switchPlayer();
@@ -62,6 +74,9 @@ const setBoard = (square, index) => {
 };
 
 const initialize = () => {
+  currentPlayer = 'X';
+  xPlayerMoves = [];
+  oPlayerMoves = [];
   const squares = document.querySelectorAll('.square');
   squares.forEach((square, index) => {
     square.innerHTML = '';
@@ -69,20 +84,17 @@ const initialize = () => {
   });
 };
 
-const toggleMenu = () => {
-  const menu = document.querySelector('.menu');
-  menu.classList.toggle('hide-menu');
-};
-
 const player1Btn = document.querySelector('.player1-btn');
 const player2Btn = document.querySelector('.player2-btn');
 
-player1Btn.addEventListener('click', () => {
+player1Btn.addEventListener('click', (e) => {
+  e.stopImmediatePropagation();
   toggleMenu();
   initialize();
 });
 
-player2Btn.addEventListener('click', () => {
+player2Btn.addEventListener('click', (e) => {
+  e.stopImmediatePropagation();
   toggleMenu();
   initialize();
 });
