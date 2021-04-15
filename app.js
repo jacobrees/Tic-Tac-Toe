@@ -39,9 +39,24 @@ const playerMove = (e, index) => {
   logMove(index);
 };
 
+const testWinner = () => {
+  const checker = (arr, target) => target.every((v) => arr.includes(v));
+  winningPossibilities.forEach((array) => {
+    if (checker(xPlayerMoves, array)) {
+      console.log('xwin');
+    } else if (checker(oPlayerMoves, array)) {
+      console.log('owin');
+    }
+  });
+  if (xPlayerMoves.concat(oPlayerMoves).length === 9) {
+    console.log('draw');
+  }
+};
+
 const setBoard = (square, index) => {
   square.addEventListener('click', (e) => {
     playerMove(e, index);
+    testWinner();
     switchPlayer();
   }, { once: true });
 };
