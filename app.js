@@ -59,10 +59,10 @@ const testWinner = () => {
   winningPossibilities.forEach((array) => {
     if (checker(xPlayerMoves, array)) {
       win = true;
-      toggleResult('X WINS');
+      toggleResult('\'X\' WINS');
     } else if (checker(oPlayerMoves, array)) {
       win = true;
-      toggleResult('O WINS');
+      toggleResult('\'O\' WINS');
     }
   });
   if (xPlayerMoves.concat(oPlayerMoves).length === 9 && !win) {
