@@ -42,6 +42,13 @@ const toggleMenu = () => {
   menu.classList.toggle('hide-menu');
 };
 
+const toggleResult = (result) => {
+  const resultContent = document.querySelector('.result-content');
+  resultContent.textContent = result;
+  const resultMenu = document.querySelector('.result-menu');
+  resultMenu.classList.toggle('show-result');
+};
+
 const testWinner = () => {
   let win = false;
   const checker = (arr, target) => target.every((v) => arr.includes(v));
@@ -51,18 +58,15 @@ const testWinner = () => {
 
   winningPossibilities.forEach((array) => {
     if (checker(xPlayerMoves, array)) {
-      console.log('xwin');
       win = true;
-      toggleMenu();
+      toggleResult('X WINS');
     } else if (checker(oPlayerMoves, array)) {
-      console.log('owin');
       win = true;
-      toggleMenu();
+      toggleResult('O WINS');
     }
   });
   if (xPlayerMoves.concat(oPlayerMoves).length === 9 && !win) {
-    console.log('draw');
-    toggleMenu();
+    toggleResult('DRAW');
   }
 };
 

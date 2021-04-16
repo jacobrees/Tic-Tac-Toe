@@ -122,6 +122,34 @@ body {
   pointer-events: none;
 }
 
+.result-menu {
+  background-color: $main-purple;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  opacity: 0;
+  transition: $fade;
+  pointer-events: none;
+}
+
+.result-nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.result-content {
+  color: $bg-purple;
+  font-size: 80px;
+  padding-top: 100px;
+}
+
+.show-result {
+  pointer-events: auto;
+  opacity: 1;
+}
+
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
   .tic-tac-toe-board {
