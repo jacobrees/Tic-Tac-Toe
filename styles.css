@@ -178,6 +178,24 @@ body {
   opacity: 1;
 }
 
+.main-menu-btn {
+  border: none;
+  border-radius: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  background-color: #72008f;
+  color: #16021d;
+  cursor: pointer;
+  padding: 5px 5px;
+  margin-top: 100px;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.main-menu-btn:hover {
+  opacity: 0.8;
+}
+
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
   .tic-tac-toe-board {
