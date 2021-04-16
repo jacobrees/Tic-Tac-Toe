@@ -8,7 +8,7 @@ const switchPlayer = () => {
   } else {
     currentPlayer = 'X';
   }
-  playerTurn.textContent = `Player ${currentPlayer} Turn`;
+  playerTurn.textContent = `Player \'${currentPlayer}\' Turn`;
 };
 
 
@@ -83,7 +83,7 @@ const initialize = () => {
   currentPlayer = 'X';
   xPlayerMoves = [];
   oPlayerMoves = [];
-  playerTurn.textContent = `Player ${currentPlayer} Turn`;
+  playerTurn.textContent = `Player \'${currentPlayer}\' Turn`;
   const squares = document.querySelectorAll('.square');
   squares.forEach((square, index) => {
     square.innerHTML = '';
