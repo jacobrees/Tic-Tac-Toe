@@ -1,6 +1,6 @@
 let currentPlayer = 'X';
 
-const playerTurn = document.querySelector('.player-turn');
+const displayPlayerTurn = document.querySelector('.player-turn');
 
 const switchPlayer = () => {
   if (currentPlayer === 'X') {
@@ -8,7 +8,7 @@ const switchPlayer = () => {
   } else {
     currentPlayer = 'X';
   }
-  playerTurn.textContent = `Player '${currentPlayer}' Turn`;
+  displayPlayerTurn.textContent = `Player '${currentPlayer}' Turn`;
 };
 
 
@@ -95,7 +95,7 @@ const initialize = () => {
   currentPlayer = 'X';
   xPlayerMoves = [];
   oPlayerMoves = [];
-  playerTurn.textContent = `Player '${currentPlayer}' Turn`;
+  displayPlayerTurn.textContent = `Player '${currentPlayer}' Turn`;
   const squares = document.querySelectorAll('.square');
   squares.forEach((square, index) => {
     square.innerHTML = '';
