@@ -35,10 +35,10 @@ const displaySymbol = (e) => {
   const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
   e.currentTarget.innerHTML = insertSymbol(currentPlayer);
   fadeImg(e);
-}
+};
 
 const playerMove = (e, index) => {
-  displaySymbol(e)
+  displaySymbol(e);
   logMove(index);
 };
 
