@@ -30,11 +30,15 @@ const logMove = (index) => {
   }
 };
 
-const playerMove = (e, index) => {
+const displaySymbol = (e) => {
   e.currentTarget.style.cursor = 'default';
   const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
   e.currentTarget.innerHTML = insertSymbol(currentPlayer);
   fadeImg(e);
+}
+
+const playerMove = (e, index) => {
+  displaySymbol(e)
   logMove(index);
 };
 
