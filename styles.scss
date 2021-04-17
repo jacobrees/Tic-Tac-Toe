@@ -48,7 +48,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 
   img {
     width: 95%;
@@ -108,6 +107,7 @@ body {
   font-weight: bold;
   background-color: $main-purple;
   color: $bg-purple;
+  cursor: pointer;
   padding: 5px 5px;
   margin-bottom: 40px;
   transition: all 0.25s ease-in-out;

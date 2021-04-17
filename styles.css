@@ -60,7 +60,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  cursor: pointer;
 }
 
 .square img {
@@ -130,6 +129,7 @@ body {
   font-weight: bold;
   background-color: #16021d;
   color: #72008f;
+  cursor: pointer;
   padding: 5px 5px;
   margin-bottom: 40px;
   -webkit-transition: all 0.25s ease-in-out;
