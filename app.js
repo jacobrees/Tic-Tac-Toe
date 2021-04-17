@@ -31,6 +31,7 @@ const logMove = (index) => {
 };
 
 const playerMove = (e, index) => {
+  e.currentTarget.style.cursor = 'default';
   const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
   e.currentTarget.innerHTML = insertSymbol(currentPlayer);
   fadeImg(e);
@@ -98,6 +99,7 @@ const initialize = () => {
   displayPlayerTurn.textContent = `Player '${currentPlayer}' Turn`;
   const squares = document.querySelectorAll('.square');
   squares.forEach((square, index) => {
+    square.style.cursor = 'pointer';
     square.innerHTML = '';
     setBoard(square, index);
   });
