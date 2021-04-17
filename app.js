@@ -8,7 +8,7 @@ const switchPlayer = () => {
   } else {
     currentPlayer = 'X';
   }
-  playerTurn.textContent = `Player \'${currentPlayer}\' Turn`;
+  playerTurn.textContent = `Player '${currentPlayer}' Turn`;
 };
 
 
@@ -44,10 +44,19 @@ const toggleMenu = () => {
 
 const toggleResult = (result) => {
   const resultContent = document.querySelector('.result-content');
-  resultContent.textContent = result;
+  if (result) {
+    resultContent.textContent = result;
+  }
   const resultMenu = document.querySelector('.result-menu');
   resultMenu.classList.toggle('show-result');
 };
+
+const mainMenuBtn = document.querySelector('.main-menu-btn');
+
+mainMenuBtn.addEventListener('click', () => {
+  toggleResult();
+});
+
 
 const testWinner = () => {
   let win = false;
@@ -59,14 +68,17 @@ const testWinner = () => {
   winningPossibilities.forEach((array) => {
     if (checker(xPlayerMoves, array)) {
       win = true;
-      toggleResult('\'X\' WINS');
+      toggleResult("'X' WINS");
+      setTimeout(() => { toggleMenu(); }, 100);
     } else if (checker(oPlayerMoves, array)) {
       win = true;
-      toggleResult('\'O\' WINS');
+      toggleResult("'O' WINS");
+      setTimeout(() => { toggleMenu(); }, 100);
     }
   });
   if (xPlayerMoves.concat(oPlayerMoves).length === 9 && !win) {
     toggleResult('DRAW');
+    setTimeout(() => { toggleMenu(); }, 100);
   }
 };
 
@@ -83,7 +95,7 @@ const initialize = () => {
   currentPlayer = 'X';
   xPlayerMoves = [];
   oPlayerMoves = [];
-  playerTurn.textContent = `Player \'${currentPlayer}\' Turn`;
+  playerTurn.textContent = `Player '${currentPlayer}' Turn`;
   const squares = document.querySelectorAll('.square');
   squares.forEach((square, index) => {
     square.innerHTML = '';
