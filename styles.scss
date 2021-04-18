@@ -82,6 +82,7 @@ body {
   top: 0;
   opacity: 1;
   transition: $fade;
+  overflow: scroll;
 }
 
 .select-game1 {
@@ -109,7 +110,6 @@ body {
   color: $bg-purple;
   cursor: pointer;
   padding: 5px 5px;
-  margin-bottom: 40px;
   transition: all 0.25s ease-in-out;
 
   &:hover {
@@ -185,6 +185,9 @@ body {
 
 /* Small devices */
 @media only screen and (max-width: 767.98px) {
+  .play-btn {
+    margin-bottom: 30px;
+  }
   .tic-tac-toe-board {
     width: 95vw;
     height: 95vw;

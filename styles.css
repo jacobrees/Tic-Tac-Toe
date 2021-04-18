@@ -97,6 +97,7 @@ body {
   opacity: 1;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
+  overflow: scroll;
 }
 
 .select-game1 {
@@ -131,7 +132,6 @@ body {
   color: #72008f;
   cursor: pointer;
   padding: 5px 5px;
-  margin-bottom: 40px;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
@@ -214,6 +214,9 @@ body {
 
 /* Small devices */
 @media only screen and (max-width: 767.98px) {
+  .play-btn {
+    margin-bottom: 30px;
+  }
   .tic-tac-toe-board {
     width: 95vw;
     height: 95vw;
