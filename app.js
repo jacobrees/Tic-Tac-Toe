@@ -96,8 +96,19 @@ const setBoard = (square, index) => {
   }, { once: true });
 };
 
+let xIsFirst = true;
+
+const setFirstPlayer = () => {
+  if (xIsFirst) {
+    currentPlayer = 'X';
+  } else {
+    currentPlayer = 'O';
+  }
+  xIsFirst = !xIsFirst;
+};
+
 const initialize = () => {
-  currentPlayer = 'X';
+  setFirstPlayer();
   xPlayerMoves = [];
   oPlayerMoves = [];
   displayPlayerTurn.textContent = `Player '${currentPlayer}' Turn`;
