@@ -9,6 +9,10 @@
 }
 
 /* XL devices (default) */
+html {
+  overflow: hidden;
+}
+
 body {
   background-color: #72008f;
 }
@@ -97,7 +101,12 @@ body {
   opacity: 1;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.enable-scroll {
+  overflow: auto;
 }
 
 .select-game1 {

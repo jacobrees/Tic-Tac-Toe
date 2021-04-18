@@ -44,7 +44,9 @@ const playerMove = (e, index) => {
 
 const toggleMenu = () => {
   const menu = document.querySelector('.menu');
+  const html = document.querySelector('html')
   menu.classList.toggle('hide-menu');
+  html.classList.toggle('enable-scroll')
 };
 
 const toggleResult = (result) => {

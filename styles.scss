@@ -14,6 +14,10 @@ $fade: all 0.25s ease-in-out;
 
 /* XL devices (default) */
 
+html {
+  overflow: hidden;
+}
+
 body {
   background-color: $bg-purple;
 }
@@ -82,7 +86,12 @@ body {
   top: 0;
   opacity: 1;
   transition: $fade;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.enable-scroll {
+  overflow: auto;
 }
 
 .select-game1 {
@@ -188,6 +197,7 @@ body {
   .play-btn {
     margin-bottom: 30px;
   }
+
   .tic-tac-toe-board {
     width: 95vw;
     height: 95vw;
