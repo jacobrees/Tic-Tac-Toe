@@ -64,9 +64,9 @@ mainMenuBtn.addEventListener('click', () => {
   toggleResult();
 });
 
+let win = false;
 
 const testWinner = () => {
-  let win = false;
   const checker = (arr, target) => target.every((v) => arr.includes(v));
   const winningPossibilities = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -89,12 +89,20 @@ const testWinner = () => {
   }
 };
 
+const squares = document.querySelectorAll('.square');
+let players;
+let possibleMoves;
+
 const setBoard = (square, index) => {
   square.addEventListener('click', (e) => {
     e.stopImmediatePropagation();
     playerMove(e, index);
     testWinner();
     switchPlayer();
+    if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
+      possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val));// eslint-disable-line
+      squares[possibleMoves[0]].click();
+    }
   }, { once: true });
 };
 
@@ -109,12 +117,13 @@ const setFirstPlayer = () => {
   xIsFirst = !xIsFirst;
 };
 
-const initialize = () => {
+const initialize = (numberOfPlayers) => {
+  players = numberOfPlayers;
   setFirstPlayer();
   xPlayerMoves = [];
   oPlayerMoves = [];
+  win = false;
   displayPlayerTurn.textContent = `Player '${currentPlayer}' Turn`;
-  const squares = document.querySelectorAll('.square');
   squares.forEach((square, index) => {
     square.style.cursor = 'pointer';
     square.innerHTML = '';
@@ -125,12 +134,17 @@ const initialize = () => {
 const player1Btn = document.querySelector('.player1-btn');
 const player2Btn = document.querySelector('.player2-btn');
 
-player1Btn.addEventListener('click', () => {
+player1Btn.addEventListener('click', (e) => {
+  e.stopImmediatePropagation();
   toggleMenu();
-  initialize();
+  initialize(1);
+  if (currentPlayer === 'O') {
+    possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val));// eslint-disable-line
+    squares[possibleMoves[0]].click();
+  }
 });
 
 player2Btn.addEventListener('click', () => {
   toggleMenu();
-  initialize();
+  initialize(2);
 });
