@@ -112,7 +112,7 @@ const setBoard = (square, index) => {
     switchPlayer();
     if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
       toggleBoardPointerEvents();
-      setTimeout(() => { squares[minimax()].click(); toggleBoardPointerEvents(); }, 500);
+      setTimeout(() => { squares[minimax()].click(); toggleBoardPointerEvents(); }, 800);
     }
   }, { once: true });
 };
@@ -151,7 +151,7 @@ player1Btn.addEventListener('click', (e) => {
   initialize(1);
   if (currentPlayer === 'O') {
     toggleBoardPointerEvents();
-    setTimeout(() => { squares[minimax()].click(); toggleBoardPointerEvents(); }, 500);
+    setTimeout(() => { squares[minimax()].click(); toggleBoardPointerEvents(); }, 800);
   }
 });
 
