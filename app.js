@@ -98,6 +98,12 @@ const minimax = () => {
   return possibleMoves[0];
 };
 
+const toggleBoardPointerEvents = () => {
+  squares.forEach((btn) => {
+    btn.classList.toggle('disable-click');
+  });
+};
+
 const setBoard = (square, index) => {
   square.addEventListener('click', (e) => {
     e.stopImmediatePropagation();
@@ -105,7 +111,8 @@ const setBoard = (square, index) => {
     testWinner();
     switchPlayer();
     if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
-      squares[minimax()].click();
+      toggleBoardPointerEvents();
+      setTimeout(() => { squares[minimax()].click(); toggleBoardPointerEvents(); }, 500);
     }
   }, { once: true });
 };
@@ -143,7 +150,8 @@ player1Btn.addEventListener('click', (e) => {
   toggleMenu();
   initialize(1);
   if (currentPlayer === 'O') {
-    squares[minimax()].click();
+    toggleBoardPointerEvents();
+    setTimeout(() => { squares[minimax()].click(); toggleBoardPointerEvents(); }, 500);
   }
 });
 
