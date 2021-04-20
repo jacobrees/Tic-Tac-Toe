@@ -72,15 +72,17 @@ const testWinner = () => {
     [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8],
   ];
 
-  winningPossibilities.forEach((array) => {
+  winningPossibilities.some((array) => { // eslint-disable-line
     if (checker(xPlayerMoves, array)) {
       win = true;
       toggleResult("'X' WINS");
       setTimeout(() => { toggleMenu(); }, 100);
-    } else if (checker(oPlayerMoves, array)) {
+      return true;
+    } if (checker(oPlayerMoves, array)) {
       win = true;
       toggleResult("'O' WINS");
       setTimeout(() => { toggleMenu(); }, 100);
+      return true;
     }
   });
   if (xPlayerMoves.concat(oPlayerMoves).length === 9 && !win) {
@@ -91,7 +93,10 @@ const testWinner = () => {
 
 const squares = document.querySelectorAll('.square');
 let players;
-let possibleMoves;
+const minimax = () => {
+  const possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
+  return possibleMoves[0];
+};
 
 const setBoard = (square, index) => {
   square.addEventListener('click', (e) => {
@@ -100,8 +105,7 @@ const setBoard = (square, index) => {
     testWinner();
     switchPlayer();
     if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
-      possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val));// eslint-disable-line
-      squares[possibleMoves[0]].click();
+      squares[minimax()].click();
     }
   }, { once: true });
 };
@@ -139,8 +143,7 @@ player1Btn.addEventListener('click', (e) => {
   toggleMenu();
   initialize(1);
   if (currentPlayer === 'O') {
-    possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val));// eslint-disable-line
-    squares[possibleMoves[0]].click();
+    squares[minimax()].click();
   }
 });
 
