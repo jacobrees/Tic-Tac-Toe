@@ -98,21 +98,24 @@ const minimax = () => {
   return possibleMoves[0];
 };
 
+const ticTacToeBoard = document.querySelector('.tic-tac-toe-board');
+
 const toggleBoardPointerEvents = () => {
-  squares.forEach((btn) => {
-    btn.classList.toggle('disable-click');
-  });
+  ticTacToeBoard.classList.toggle('disable-click');
 };
 
 const setBoard = (square, index) => {
   square.addEventListener('click', (e) => {
     e.stopImmediatePropagation();
-    playerMove(e, index);
-    testWinner();
-    switchPlayer();
+    if (!xPlayerMoves.concat(oPlayerMoves).includes(index)) {
+      playerMove(e, index);
+      testWinner();
+      switchPlayer();
+    }
     if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
       toggleBoardPointerEvents();
-      setTimeout(() => { squares[minimax()].click(); toggleBoardPointerEvents(); }, 800);
+      setTimeout(() => { squares[minimax()].click(); }, 800);
+      setTimeout(() => { toggleBoardPointerEvents(); }, 1000);
     }
   }, { once: true });
 };
@@ -151,7 +154,8 @@ player1Btn.addEventListener('click', (e) => {
   initialize(1);
   if (currentPlayer === 'O') {
     toggleBoardPointerEvents();
-    setTimeout(() => { squares[minimax()].click(); toggleBoardPointerEvents(); }, 800);
+    setTimeout(() => { squares[minimax()].click(); }, 800);
+    setTimeout(() => { toggleBoardPointerEvents(); }, 1000);
   }
 });
 
