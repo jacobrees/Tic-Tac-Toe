@@ -1,4 +1,4 @@
-let currentPlayer = 'X';
+let currentPlayer;
 
 const displayPlayerTurn = document.querySelector('.player-turn');
 
