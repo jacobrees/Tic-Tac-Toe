@@ -93,9 +93,9 @@ const testWinner = () => {
 
 const squares = document.querySelectorAll('.square');
 let players;
-const minimax = () => {
+const randomMove = () => {
   const possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
-  return possibleMoves[0];
+  return possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
 };
 
 const ticTacToeBoard = document.querySelector('.tic-tac-toe-board');
@@ -114,7 +114,7 @@ const setBoard = (square, index) => {
     }
     if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
       toggleBoardPointerEvents();
-      setTimeout(() => { squares[minimax()].click(); }, 800);
+      setTimeout(() => { squares[randomMove()].click(); }, 800);
       setTimeout(() => { toggleBoardPointerEvents(); }, 1000);
     }
   }, { once: true });
@@ -154,7 +154,7 @@ player1Btn.addEventListener('click', (e) => {
   initialize(1);
   if (currentPlayer === 'O') {
     toggleBoardPointerEvents();
-    setTimeout(() => { squares[minimax()].click(); }, 800);
+    setTimeout(() => { squares[randomMove()].click(); }, 800);
     setTimeout(() => { toggleBoardPointerEvents(); }, 1000);
   }
 });
