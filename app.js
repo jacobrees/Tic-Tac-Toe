@@ -64,21 +64,22 @@ mainMenuBtn.addEventListener('click', () => {
   toggleResult();
 });
 
-let win = false;
+let win;
 
-const testWinner = () => {
-  const checker = (arr, target) => target.every((v) => arr.includes(v));
-  const winningPossibilities = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  ];
+const checkWinningPossibility = (arr, target) => target.every((v) => arr.includes(v));
 
+const winningPossibilities = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8],
+];
+
+const testEndGame = () => {
   winningPossibilities.some((array) => { // eslint-disable-line
-    if (checker(xPlayerMoves, array)) {
+    if (checkWinningPossibility(xPlayerMoves, array)) {
       win = true;
       toggleResult("'X' WINS");
       setTimeout(() => { toggleMenu(); }, 100);
       return true;
-    } if (checker(oPlayerMoves, array)) {
+    } if (checkWinningPossibility(oPlayerMoves, array)) {
       win = true;
       toggleResult("'O' WINS");
       setTimeout(() => { toggleMenu(); }, 100);
@@ -95,7 +96,36 @@ const squares = document.querySelectorAll('.square');
 
 let players;
 
-const minimax = (player1, player2) => 1;
+const scores = {
+  X: -1,
+  O: 1,
+  tie: 0,
+};
+
+
+const testPossibleEndGame = () => {
+  let possibleEndResult = null;
+  winningPossibilities.some((array) => { // eslint-disable-line
+    if (checkWinningPossibility(xPlayerMoves, array)) {
+      possibleEndResult = 'X';
+      return true;
+    } if (checkWinningPossibility(oPlayerMoves, array)) {
+      possibleEndResult = 'O';
+      return true;
+    }
+  });
+  if (xPlayerMoves.concat(oPlayerMoves).length === 9 && possibleEndResult === null) {
+    possibleEndResult = 'tie';
+  }
+  return possibleEndResult;
+};
+
+const minimax = (player1, player2, depth, isMaximizing) => { // eslint-disable-line
+  const result = testPossibleEndGame();
+  if (result !== null) {
+    return scores[result];
+  }
+};
 
 const computerMove = () => {
   let bestScore = -Infinity;
@@ -103,7 +133,7 @@ const computerMove = () => {
   const possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
   possibleMoves.forEach((move) => {
     oPlayerMoves.push(move);
-    const score = minimax(xPlayerMoves, oPlayerMoves);
+    const score = minimax(xPlayerMoves, oPlayerMoves, 0, true);
     oPlayerMoves.pop();
     if (score > bestScore) {
       bestScore = score;
@@ -124,7 +154,7 @@ const setBoard = (square, index) => {
     e.stopImmediatePropagation();
     if (!xPlayerMoves.concat(oPlayerMoves).includes(index)) {
       playerMove(e, index);
-      testWinner();
+      testEndGame();
       switchPlayer();
     }
     if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
