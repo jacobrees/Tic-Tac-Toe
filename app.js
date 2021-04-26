@@ -92,10 +92,25 @@ const testWinner = () => {
 };
 
 const squares = document.querySelectorAll('.square');
+
 let players;
-const randomMove = () => {
+
+const minimax = (player1, player2) => 1;
+
+const computerMove = () => {
+  let bestScore = -Infinity;
+  let bestMove;
   const possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
-  return possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+  possibleMoves.forEach((move) => {
+    oPlayerMoves.push(move);
+    const score = minimax(xPlayerMoves, oPlayerMoves);
+    oPlayerMoves.pop();
+    if (score > bestScore) {
+      bestScore = score;
+      bestMove = move;
+    }
+  });
+  return bestMove;
 };
 
 const ticTacToeBoard = document.querySelector('.tic-tac-toe-board');
@@ -114,7 +129,7 @@ const setBoard = (square, index) => {
     }
     if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
       toggleBoardPointerEvents();
-      setTimeout(() => { squares[randomMove()].click(); }, 800);
+      setTimeout(() => { squares[computerMove()].click(); }, 800);
       setTimeout(() => { toggleBoardPointerEvents(); }, 1000);
     }
   }, { once: true });
@@ -154,7 +169,7 @@ player1Btn.addEventListener('click', (e) => {
   initialize(1);
   if (currentPlayer === 'O') {
     toggleBoardPointerEvents();
-    setTimeout(() => { squares[randomMove()].click(); }, 800);
+    setTimeout(() => { squares[computerMove()].click(); }, 800);
     setTimeout(() => { toggleBoardPointerEvents(); }, 1000);
   }
 });
