@@ -133,7 +133,7 @@ const computerMove = () => {
   const possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
   possibleMoves.forEach((move) => {
     oPlayerMoves.push(move);
-    const score = minimax(xPlayerMoves, oPlayerMoves, 0, true);
+    const score = minimax(xPlayerMoves, oPlayerMoves, 0, false);
     oPlayerMoves.pop();
     if (score > bestScore) {
       bestScore = score;
