@@ -120,17 +120,40 @@ const testPossibleEndGame = () => {
   return possibleEndResult;
 };
 
+let possibleMoves;
+
 const minimax = (player1, player2, depth, isMaximizing) => { // eslint-disable-line
   const result = testPossibleEndGame();
   if (result !== null) {
     return scores[result];
+  }
+  if (isMaximizing) {
+    let bestScore = -Infinity;
+    possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
+    possibleMoves.forEach((move) => {
+      oPlayerMoves.push(move);
+      const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, false);
+      oPlayerMoves.pop();
+      bestScore = Math.max(score, bestScore);
+    });
+    return bestScore;
+  } if (!isMaximizing) {
+    let bestScore = Infinity;
+    possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
+    possibleMoves.forEach((move) => {
+      xPlayerMoves.push(move);
+      const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, true);
+      xPlayerMoves.pop();
+      bestScore = Math.min(score, bestScore);
+    });
+    return bestScore;
   }
 };
 
 const computerMove = () => {
   let bestScore = -Infinity;
   let bestMove;
-  const possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
+  possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
   possibleMoves.forEach((move) => {
     oPlayerMoves.push(move);
     const score = minimax(xPlayerMoves, oPlayerMoves, 0, false);
@@ -199,7 +222,7 @@ player1Btn.addEventListener('click', (e) => {
   initialize(1);
   if (currentPlayer === 'O') {
     toggleBoardPointerEvents();
-    setTimeout(() => { squares[computerMove()].click(); }, 800);
+    setTimeout(() => { squares[4].click(); }, 800);
     setTimeout(() => { toggleBoardPointerEvents(); }, 1000);
   }
 });
