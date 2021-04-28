@@ -58,6 +58,8 @@ const gameLogic = (() => { //eslint-disable-line
   let xPlayerMoves = [];
   let oPlayerMoves = [];
   let win;
+  let players;
+  let xIsFirst = true;
 
   const switchPlayer = () => {
     if (currentPlayer === 'X') {
@@ -185,8 +187,6 @@ const gameLogic = (() => { //eslint-disable-line
     return { computerMove };
   })();
 
-  let players;
-
   const setBoard = (square, index) => {
     square.addEventListener('click', (e) => {
       e.stopImmediatePropagation();
@@ -202,8 +202,6 @@ const gameLogic = (() => { //eslint-disable-line
       }
     }, { once: true });
   };
-
-  let xIsFirst = true;
 
   const setFirstPlayer = () => {
     if (xIsFirst) {
