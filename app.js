@@ -139,7 +139,7 @@ const gameLogic = (() => { //eslint-disable-line
       return possibleEndResult;
     };
 
-    let possibleMoves;
+    const possibleMoves = (player1, player2) => [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !player1.concat(player2).includes(val)); //eslint-disable-line
 
     const minimax = (player1, player2, depth, isMaximizing) => { //eslint-disable-line
       const result = testPossibleEndGame();
@@ -148,8 +148,7 @@ const gameLogic = (() => { //eslint-disable-line
       }
       if (isMaximizing) {
         let bestScore = -Infinity;
-        possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); //eslint-disable-line
-        possibleMoves.forEach((move) => {
+        possibleMoves(xPlayerMoves, oPlayerMoves).forEach((move) => {
           oPlayerMoves.push(move);
           const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, false);
           oPlayerMoves.pop();
@@ -158,8 +157,7 @@ const gameLogic = (() => { //eslint-disable-line
         return bestScore;
       } if (!isMaximizing) {
         let bestScore = Infinity;
-        possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); //eslint-disable-line
-        possibleMoves.forEach((move) => {
+        possibleMoves(xPlayerMoves, oPlayerMoves).forEach((move) => {
           xPlayerMoves.push(move);
           const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, true);
           xPlayerMoves.pop();
@@ -172,8 +170,7 @@ const gameLogic = (() => { //eslint-disable-line
     const computerMove = () => {
       let bestScore = -Infinity;
       let bestMove;
-      possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); //eslint-disable-line
-      possibleMoves.forEach((move) => {
+      possibleMoves(xPlayerMoves, oPlayerMoves).forEach((move) => {
         oPlayerMoves.push(move);
         const score = minimax(xPlayerMoves, oPlayerMoves, 0, false);
         oPlayerMoves.pop();
