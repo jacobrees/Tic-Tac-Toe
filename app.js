@@ -1,233 +1,249 @@
-let currentPlayer;
+const gameBoard = (() => {
+  const displayPlayerTurn = document.querySelector('.player-turn');
 
-const displayPlayerTurn = document.querySelector('.player-turn');
+  const fadeImg = (e) => {
+    const img = e.currentTarget.firstChild;
+    window.getComputedStyle(img).opacity; //eslint-disable-line
+    img.style.opacity = 1;
+  };
 
-const switchPlayer = () => {
-  if (currentPlayer === 'X') {
-    currentPlayer = 'O';
-  } else {
-    currentPlayer = 'X';
-  }
-  displayPlayerTurn.textContent = `Player '${currentPlayer}' Turn`;
-};
+  const toggleMenu = () => {
+    const menu = document.querySelector('.menu');
+    const html = document.querySelector('html');
+    menu.classList.toggle('hide-menu');
+    html.classList.toggle('enable-scroll');
+  };
 
-
-const fadeImg = (e) => {
-  const img = e.currentTarget.firstChild;
-  window.getComputedStyle(img).opacity; // eslint-disable-line
-  img.style.opacity = 1;
-};
-
-
-let xPlayerMoves = [];
-let oPlayerMoves = [];
-
-const logMove = (index) => {
-  if (currentPlayer === 'X') {
-    xPlayerMoves.push(index);
-  } else {
-    oPlayerMoves.push(index);
-  }
-};
-
-const displaySymbol = (e) => {
-  e.currentTarget.style.cursor = 'default';
-  const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
-  e.currentTarget.innerHTML = insertSymbol(currentPlayer);
-  fadeImg(e);
-};
-
-const playerMove = (e, index) => {
-  displaySymbol(e);
-  logMove(index);
-};
-
-const toggleMenu = () => {
-  const menu = document.querySelector('.menu');
-  const html = document.querySelector('html');
-  menu.classList.toggle('hide-menu');
-  html.classList.toggle('enable-scroll');
-};
-
-const toggleResult = (result) => {
-  const resultContent = document.querySelector('.result-content');
-  if (result) {
-    resultContent.textContent = result;
-  }
-  const resultMenu = document.querySelector('.result-menu');
-  resultMenu.classList.toggle('show-result');
-};
-
-const mainMenuBtn = document.querySelector('.main-menu-btn');
-
-mainMenuBtn.addEventListener('click', () => {
-  toggleResult();
-});
-
-let win;
-
-const checkWinningPossibility = (arr, target) => target.every((v) => arr.includes(v));
-
-const winningPossibilities = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8],
-];
-
-const testEndGame = () => {
-  winningPossibilities.some((array) => { // eslint-disable-line
-    if (checkWinningPossibility(xPlayerMoves, array)) {
-      win = true;
-      toggleResult("'X' WINS");
-      setTimeout(() => { toggleMenu(); }, 100);
-      return true;
-    } if (checkWinningPossibility(oPlayerMoves, array)) {
-      win = true;
-      toggleResult("'O' WINS");
-      setTimeout(() => { toggleMenu(); }, 100);
-      return true;
+  const toggleResult = (result) => {
+    const resultContent = document.querySelector('.result-content');
+    if (result) {
+      resultContent.textContent = result;
     }
+    const resultMenu = document.querySelector('.result-menu');
+    resultMenu.classList.toggle('show-result');
+  };
+
+  const mainMenuBtn = document.querySelector('.main-menu-btn');
+
+  mainMenuBtn.addEventListener('click', () => {
+    toggleResult();
   });
-  if (xPlayerMoves.concat(oPlayerMoves).length === 9 && !win) {
-    toggleResult('DRAW');
-    setTimeout(() => { toggleMenu(); }, 100);
-  }
-};
 
-const squares = document.querySelectorAll('.square');
+  const squares = document.querySelectorAll('.square');
 
-let players;
+  const ticTacToeBoard = document.querySelector('.tic-tac-toe-board');
 
-const scores = {
-  X: -1,
-  O: 1,
-  tie: 0,
-};
+  const toggleBoardPointerEvents = () => {
+    ticTacToeBoard.classList.toggle('disable-click');
+  };
 
+  const player1Btn = document.querySelector('.player1-btn');
 
-const testPossibleEndGame = () => {
-  let possibleEndResult = null;
-  winningPossibilities.some((array) => { // eslint-disable-line
-    if (checkWinningPossibility(xPlayerMoves, array)) {
-      possibleEndResult = 'X';
-      return true;
-    } if (checkWinningPossibility(oPlayerMoves, array)) {
-      possibleEndResult = 'O';
-      return true;
+  const player2Btn = document.querySelector('.player2-btn');
+
+  return {
+    displayPlayerTurn,
+    fadeImg,
+    toggleMenu,
+    toggleResult,
+    squares,
+    toggleBoardPointerEvents,
+    player1Btn,
+    player2Btn,
+  };
+})();
+
+const gameLogic = (() => { //eslint-disable-line
+  let currentPlayer;
+  let xPlayerMoves = [];
+  let oPlayerMoves = [];
+  let win;
+
+  const switchPlayer = () => {
+    if (currentPlayer === 'X') {
+      currentPlayer = 'O';
+    } else {
+      currentPlayer = 'X';
     }
-  });
-  if (xPlayerMoves.concat(oPlayerMoves).length === 9 && possibleEndResult === null) {
-    possibleEndResult = 'tie';
-  }
-  return possibleEndResult;
-};
+    gameBoard.displayPlayerTurn.textContent = `Player '${currentPlayer}' Turn`;
+  };
 
-let possibleMoves;
+  const logMove = (index) => {
+    if (currentPlayer === 'X') {
+      xPlayerMoves.push(index);
+    } else {
+      oPlayerMoves.push(index);
+    }
+  };
 
-const minimax = (player1, player2, depth, isMaximizing) => { // eslint-disable-line
-  const result = testPossibleEndGame();
-  if (result !== null) {
-    return scores[result];
-  }
-  if (isMaximizing) {
-    let bestScore = -Infinity;
-    possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
-    possibleMoves.forEach((move) => {
-      oPlayerMoves.push(move);
-      const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, false);
-      oPlayerMoves.pop();
-      bestScore = Math.max(score, bestScore);
+  const displaySymbol = (e) => {
+    e.currentTarget.style.cursor = 'default';
+    const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
+    e.currentTarget.innerHTML = insertSymbol(currentPlayer);
+    gameBoard.fadeImg(e);
+  };
+
+  const playerMove = (e, index) => {
+    displaySymbol(e);
+    logMove(index);
+  };
+
+  const checkWinningPossibility = (arr, target) => target.every((v) => arr.includes(v));
+
+  const winningPossibilities = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8],
+  ];
+
+  const testEndGame = () => {
+    winningPossibilities.some((array) => { //eslint-disable-line
+      if (checkWinningPossibility(xPlayerMoves, array)) {
+        win = true;
+        gameBoard.toggleResult("'X' WINS");
+        setTimeout(() => { gameBoard.toggleMenu(); }, 100);
+        return true;
+      } if (checkWinningPossibility(oPlayerMoves, array)) {
+        win = true;
+        gameBoard.toggleResult("'O' WINS");
+        setTimeout(() => { gameBoard.toggleMenu(); }, 100);
+        return true;
+      }
     });
-    return bestScore;
-  } if (!isMaximizing) {
-    let bestScore = Infinity;
-    possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
-    possibleMoves.forEach((move) => {
-      xPlayerMoves.push(move);
-      const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, true);
-      xPlayerMoves.pop();
-      bestScore = Math.min(score, bestScore);
-    });
-    return bestScore;
-  }
-};
-
-const computerMove = () => {
-  let bestScore = -Infinity;
-  let bestMove;
-  possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); // eslint-disable-line
-  possibleMoves.forEach((move) => {
-    oPlayerMoves.push(move);
-    const score = minimax(xPlayerMoves, oPlayerMoves, 0, false);
-    oPlayerMoves.pop();
-    if (score > bestScore) {
-      bestScore = score;
-      bestMove = move;
+    if (xPlayerMoves.concat(oPlayerMoves).length === 9 && !win) {
+      gameBoard.toggleResult('DRAW');
+      setTimeout(() => { gameBoard.toggleMenu(); }, 100);
     }
-  });
-  return bestMove;
-};
+  };
 
-const ticTacToeBoard = document.querySelector('.tic-tac-toe-board');
+  const gameAI = (() => {
+    const scores = {
+      X: -1,
+      O: 1,
+      tie: 0,
+    };
 
-const toggleBoardPointerEvents = () => {
-  ticTacToeBoard.classList.toggle('disable-click');
-};
 
-const setBoard = (square, index) => {
-  square.addEventListener('click', (e) => {
+    const testPossibleEndGame = () => {
+      let possibleEndResult = null;
+      winningPossibilities.some((array) => { //eslint-disable-line
+        if (checkWinningPossibility(xPlayerMoves, array)) {
+          possibleEndResult = 'X';
+          return true;
+        } if (checkWinningPossibility(oPlayerMoves, array)) {
+          possibleEndResult = 'O';
+          return true;
+        }
+      });
+      if (xPlayerMoves.concat(oPlayerMoves).length === 9 && possibleEndResult === null) {
+        possibleEndResult = 'tie';
+      }
+      return possibleEndResult;
+    };
+
+    let possibleMoves;
+
+    const minimax = (player1, player2, depth, isMaximizing) => { //eslint-disable-line
+      const result = testPossibleEndGame();
+      if (result !== null) {
+        return scores[result];
+      }
+      if (isMaximizing) {
+        let bestScore = -Infinity;
+        possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); //eslint-disable-line
+        possibleMoves.forEach((move) => {
+          oPlayerMoves.push(move);
+          const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, false);
+          oPlayerMoves.pop();
+          bestScore = Math.max(score, bestScore);
+        });
+        return bestScore;
+      } if (!isMaximizing) {
+        let bestScore = Infinity;
+        possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); //eslint-disable-line
+        possibleMoves.forEach((move) => {
+          xPlayerMoves.push(move);
+          const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, true);
+          xPlayerMoves.pop();
+          bestScore = Math.min(score, bestScore);
+        });
+        return bestScore;
+      }
+    };
+
+    const computerMove = () => {
+      let bestScore = -Infinity;
+      let bestMove;
+      possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !xPlayerMoves.concat(oPlayerMoves).includes(val)); //eslint-disable-line
+      possibleMoves.forEach((move) => {
+        oPlayerMoves.push(move);
+        const score = minimax(xPlayerMoves, oPlayerMoves, 0, false);
+        oPlayerMoves.pop();
+        if (score > bestScore) {
+          bestScore = score;
+          bestMove = move;
+        }
+      });
+      return bestMove;
+    };
+
+    return { computerMove };
+  })();
+
+  let players;
+
+  const setBoard = (square, index) => {
+    square.addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+      if (!xPlayerMoves.concat(oPlayerMoves).includes(index)) {
+        playerMove(e, index);
+        testEndGame();
+        switchPlayer();
+      }
+      if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
+        gameBoard.toggleBoardPointerEvents();
+        setTimeout(() => { gameBoard.squares[gameAI.computerMove()].click(); }, 800);
+        setTimeout(() => { gameBoard.toggleBoardPointerEvents(); }, 1000);
+      }
+    }, { once: true });
+  };
+
+  let xIsFirst = true;
+
+  const setFirstPlayer = () => {
+    if (xIsFirst) {
+      currentPlayer = 'X';
+    } else {
+      currentPlayer = 'O';
+    }
+    xIsFirst = !xIsFirst;
+  };
+
+  const initialize = (numberOfPlayers) => {
+    players = numberOfPlayers;
+    setFirstPlayer();
+    xPlayerMoves = [];
+    oPlayerMoves = [];
+    win = false;
+    gameBoard.displayPlayerTurn.textContent = `Player '${currentPlayer}' Turn`;
+    gameBoard.squares.forEach((square, index) => {
+      square.style.cursor = 'pointer';
+      square.innerHTML = '';
+      setBoard(square, index);
+    });
+  };
+
+  gameBoard.player1Btn.addEventListener('click', (e) => {
     e.stopImmediatePropagation();
-    if (!xPlayerMoves.concat(oPlayerMoves).includes(index)) {
-      playerMove(e, index);
-      testEndGame();
-      switchPlayer();
+    gameBoard.toggleMenu();
+    initialize(1);
+    if (currentPlayer === 'O') {
+      gameBoard.toggleBoardPointerEvents();
+      setTimeout(() => { gameBoard.squares[4].click(); }, 800);
+      setTimeout(() => { gameBoard.toggleBoardPointerEvents(); }, 1000);
     }
-    if (currentPlayer === 'O' && players === 1 && xPlayerMoves.concat(oPlayerMoves).length !== 9 && win === false) {
-      toggleBoardPointerEvents();
-      setTimeout(() => { squares[computerMove()].click(); }, 800);
-      setTimeout(() => { toggleBoardPointerEvents(); }, 1000);
-    }
-  }, { once: true });
-};
-
-let xIsFirst = true;
-
-const setFirstPlayer = () => {
-  if (xIsFirst) {
-    currentPlayer = 'X';
-  } else {
-    currentPlayer = 'O';
-  }
-  xIsFirst = !xIsFirst;
-};
-
-const initialize = (numberOfPlayers) => {
-  players = numberOfPlayers;
-  setFirstPlayer();
-  xPlayerMoves = [];
-  oPlayerMoves = [];
-  win = false;
-  displayPlayerTurn.textContent = `Player '${currentPlayer}' Turn`;
-  squares.forEach((square, index) => {
-    square.style.cursor = 'pointer';
-    square.innerHTML = '';
-    setBoard(square, index);
   });
-};
 
-const player1Btn = document.querySelector('.player1-btn');
-const player2Btn = document.querySelector('.player2-btn');
-
-player1Btn.addEventListener('click', (e) => {
-  e.stopImmediatePropagation();
-  toggleMenu();
-  initialize(1);
-  if (currentPlayer === 'O') {
-    toggleBoardPointerEvents();
-    setTimeout(() => { squares[4].click(); }, 800);
-    setTimeout(() => { toggleBoardPointerEvents(); }, 1000);
-  }
-});
-
-player2Btn.addEventListener('click', () => {
-  toggleMenu();
-  initialize(2);
-});
+  gameBoard.player2Btn.addEventListener('click', () => {
+    gameBoard.toggleMenu();
+    initialize(2);
+  });
+})();
