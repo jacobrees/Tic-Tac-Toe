@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+$font: 'Varela Round', sans-serif;
+$bg-purple: rgb(166, 0, 207);
+$main-purple: #16021d;
+$fade: all 0.25s ease-in-out;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font;
+  color: $main-purple;
+}
+
+/* XL devices (default) */
+
+html {
+  overflow: hidden;
+}
+
+body {
+  background-color: $bg-purple;
+}
+
+.nav {
+  width: 100%;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.nav2 {
+  width: 100%;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.tic-tac-toe-board {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 33%;
+  margin: 15px auto;
+  width: 470px;
+  height: 470px;
+}
+
+.square {
+  border: $main-purple solid 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 95%;
+    height: 95%;
+    filter: invert(2%) sepia(68%) saturate(6425%) hue-rotate(284deg) brightness(82%) contrast(100%);
+    transition: $fade;
+    opacity: 0;
+  }
+}
+
+.disable-click {
+  pointer-events: none;
+}
+
+.bdr-top-none {
+  border-top: none;
+}
+
+.bdr-left-none {
+  border-left: none;
+}
+
+.bdr-right-none {
+  border-right: none;
+}
+
+.bdr-bottom-none {
+  border-bottom: none;
+}
+
+.menu {
+  background-color: $bg-purple;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  opacity: 1;
+  transition: $fade;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.enable-scroll {
+  overflow: auto;
+}
+
+.select-game1 {
+  margin-bottom: 40px;
+}
+
+.modes {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.play-btn {
+  border: none;
+  border-radius: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  background-color: $main-purple;
+  color: $bg-purple;
+  cursor: pointer;
+  padding: 5px 5px;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.hide-menu {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.result-menu {
+  background-color: $main-purple;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  opacity: 0;
+  transition: $fade;
+  pointer-events: none;
+}
+
+.result-nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.result-content {
+  color: $bg-purple;
+  font-size: 80px;
+  padding-top: 100px;
+}
+
+.show-result {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.main-menu-btn {
+  border: none;
+  border-radius: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  background-color: $bg-purple;
+  color: $main-purple;
+  cursor: pointer;
+  padding: 5px 5px;
+  margin-top: 100px;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Large devices */
+@media only screen and (max-width: 1199.98px) {
+  .tic-tac-toe-board {
+    width: 40vw;
+    height: 40vw;
+  }
+}
+
+/* Medium devices */
+@media only screen and (max-width: 991.98px) {
+  .tic-tac-toe-board {
+    width: 50vw;
+    height: 50vw;
+  }
+}
+
+/* Small devices */
+@media only screen and (max-width: 767.98px) {
+  .play-btn {
+    margin-bottom: 30px;
+  }
+
+  .tic-tac-toe-board {
+    width: 95vw;
+    height: 95vw;
+  }
+
+  .nav {
+    font-size: 35px;
+  }
+
+  .modes {
+    flex-direction: column;
+  }
+
+  .mode-explanation {
+    display: none;
+  }
+
+  .result-content {
+    font-size: 70px;
+  }
+}
