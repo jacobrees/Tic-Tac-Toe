@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-> This project is a Tic Tac Toe game built using JavaScript. This is an assignment taken from _The Odin Project_. This project features two modes '1 Player' (where you can play against an AI) & '2 Player' (where you can choose the moves of both players).
+> This project is a Tic Tac Toe game built using JavaScript. This is an assignment taken from _The Odin Project_. This game features two modes '1 Player' (where you can play against an AI) & '2 Player' (where you can choose the moves of both players).
 
 ### Tic Tac Toe Screenshot:
 
