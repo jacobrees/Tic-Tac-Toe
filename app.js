@@ -123,7 +123,6 @@ const gameLogic = (() => { //eslint-disable-line
       tie: 0,
     };
 
-
     const testPossibleEndGame = () => {
       let possibleEndResult = null;
       winningPossibilities.some((array) => { //eslint-disable-line
