@@ -118,7 +118,9 @@ body {
 }
 
 .modes {
+  margin: 0 auto;
   width: 100%;
+  max-width: 1320px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
