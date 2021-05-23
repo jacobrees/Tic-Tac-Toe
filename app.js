@@ -7,6 +7,13 @@ const gameBoard = (() => {
     img.style.opacity = 1;
   };
 
+  const displaySymbol = (e, player) => {
+    e.currentTarget.style.cursor = 'default';
+    const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
+    e.currentTarget.innerHTML = insertSymbol(player);
+    fadeImg(e);
+  };
+
   const toggleMenu = () => {
     const menu = document.querySelector('.menu');
     const html = document.querySelector('html');
@@ -43,7 +50,7 @@ const gameBoard = (() => {
 
   return {
     displayPlayerTurn,
-    fadeImg,
+    displaySymbol,
     toggleMenu,
     toggleResult,
     squares,
@@ -78,15 +85,8 @@ const gameLogic = (() => { //eslint-disable-line
     }
   };
 
-  const displaySymbol = (e) => {
-    e.currentTarget.style.cursor = 'default';
-    const insertSymbol = (symbol) => `<img src="img/${symbol}.svg" alt="${symbol}"></img>`;
-    e.currentTarget.innerHTML = insertSymbol(currentPlayer);
-    gameBoard.fadeImg(e);
-  };
-
   const playerMove = (e, index) => {
-    displaySymbol(e);
+    gameBoard.displaySymbol(e, currentPlayer);
     logMove(index);
   };
 
