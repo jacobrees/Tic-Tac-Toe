@@ -8,7 +8,7 @@
 
 # Live Preview
 
-[View Project](https://rawcdn.githack.com/jacobrees/Tic-Tac-Toe/71d6d5f5f22a9ef9e801b43b12bc13ba2321fb64/index.html)
+[View Project](https://rawcdn.githack.com/jacobrees/Tic-Tac-Toe/df42db5aad77c30ea516df13b3981debae2497f9/index.html)
 
 ## How To Play Tic Tac Toe
 
