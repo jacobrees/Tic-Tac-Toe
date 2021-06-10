@@ -142,7 +142,7 @@ const gameLogic = (() => { //eslint-disable-line
 
     const possibleMoves = (player1, player2) => [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !player1.concat(player2).includes(val)); //eslint-disable-line
 
-    const minimax = (player1, player2, depth, isMaximizing) => { //eslint-disable-line
+    const minimax = (player1, player2, isMaximizing) => { //eslint-disable-line
       const result = testPossibleEndGame();
       if (result !== null) {
         return scores[result];
@@ -151,7 +151,7 @@ const gameLogic = (() => { //eslint-disable-line
         let bestScore = -Infinity;
         possibleMoves(xPlayerMoves, oPlayerMoves).forEach((move) => {
           oPlayerMoves.push(move);
-          const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, false);
+          const score = minimax(xPlayerMoves, oPlayerMoves, false);
           oPlayerMoves.pop();
           bestScore = Math.max(score, bestScore);
         });
@@ -160,7 +160,7 @@ const gameLogic = (() => { //eslint-disable-line
         let bestScore = Infinity;
         possibleMoves(xPlayerMoves, oPlayerMoves).forEach((move) => {
           xPlayerMoves.push(move);
-          const score = minimax(xPlayerMoves, oPlayerMoves, depth + 1, true);
+          const score = minimax(xPlayerMoves, oPlayerMoves, true);
           xPlayerMoves.pop();
           bestScore = Math.min(score, bestScore);
         });
@@ -173,7 +173,7 @@ const gameLogic = (() => { //eslint-disable-line
       let bestMove;
       possibleMoves(xPlayerMoves, oPlayerMoves).forEach((move) => {
         oPlayerMoves.push(move);
-        const score = minimax(xPlayerMoves, oPlayerMoves, 0, false);
+        const score = minimax(xPlayerMoves, oPlayerMoves, false);
         oPlayerMoves.pop();
         if (score > bestScore) {
           bestScore = score;
