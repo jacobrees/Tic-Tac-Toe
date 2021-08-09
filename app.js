@@ -140,7 +140,8 @@ const gameLogic = (() => { //eslint-disable-line
       return possibleEndResult;
     };
 
-    const possibleMoves = (player1, player2) => [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((val) => !player1.concat(player2).includes(val)); //eslint-disable-line
+    const possibleMoves = (player1, player2) => [0, 1, 2, 3, 4, 5, 6, 7, 8]
+      .filter((val) => !player1.concat(player2).includes(val));
 
     const minimax = (player1, player2, isMaximizing) => { //eslint-disable-line
       const result = testPossibleEndGame();
