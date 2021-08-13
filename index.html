@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title>Tic Tac Toe</title>
 </head>
+
 <body>
-    <div class="nav"><h2>Tic Tac Toe</h2></div>
-    <div class="nav2"><h4 class="player-turn">Player X Turn</h4></div>
+    <div class="nav">
+        <h2>Tic Tac Toe</h2>
+    </div>
+    <div class="nav2">
+        <h4 class="player-turn">Player X Turn</h4>
+    </div>
 
     <div class="tic-tac-toe-board">
         <div class="square bdr-top-none bdr-left-none"></div>
@@ -24,29 +33,48 @@
     </div>
 
     <div class="menu">
-        <div class="nav"><h2>Tic Tac Toe</h2></div>
-        <div class="nav2"><h4>Select Mode</h4></div>
+        <div class="nav">
+            <h2>Tic Tac Toe</h2>
+        </div>
+        <div class="nav2">
+            <h4>Select Mode</h4>
+        </div>
         <div class="modes">
-        <div class="select-game1">
-            <div class="nav2"><h4>1 Player</h4></div>
-            <div class="nav2 mode-explanation"><p>Player 'X' Is You</p></div>
-            <div class="nav2 mode-explanation"><p>Player 'O' Is AI</p></div>
-            <div class="btn-wrap"><button type="button" class="play-btn player1-btn">Play Game</button></div>
-        </div>
-        <div class="select-game2">
-            <div class="nav2"><h4>2 Player</h4></div>
-            <div class="nav2 mode-explanation"><p>Player 'X' Is You</p></div>
-            <div class="nav2 mode-explanation"><p>Player 'O' Is You</p></div>
-            <div class="btn-wrap"><button type="button" class="play-btn player2-btn">Play Game</button></div>
-        </div>
+            <div class="select-game1">
+                <div class="nav2">
+                    <h4>1 Player</h4>
+                </div>
+                <div class="nav2 mode-explanation">
+                    <p>Player 'X' Is You</p>
+                </div>
+                <div class="nav2 mode-explanation">
+                    <p>Player 'O' Is AI</p>
+                </div>
+                <div class="btn-wrap"><button type="button" class="play-btn player1-btn">Play Game</button></div>
+            </div>
+            <div class="select-game2">
+                <div class="nav2">
+                    <h4>2 Player</h4>
+                </div>
+                <div class="nav2 mode-explanation">
+                    <p>Player 'X' Is You</p>
+                </div>
+                <div class="nav2 mode-explanation">
+                    <p>Player 'O' Is You</p>
+                </div>
+                <div class="btn-wrap"><button type="button" class="play-btn player2-btn">Play Game</button></div>
+            </div>
         </div>
     </div>
 
     <div class="result-menu">
-        <div class="result-nav"><h2 class="result-content">'X' WINS</h2></div>
+        <div class="result-nav">
+            <h2 class="result-content">'X' WINS</h2>
+        </div>
         <div class="btn-wrap"><button type="button" class="main-menu-btn">Main Menu</button></div>
     </div>
-    
+
     <script src="app.js"></script>
 </body>
+
 </html>
