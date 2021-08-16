@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -234,7 +233,9 @@ body {
   }
   .tic-tac-toe-board {
     width: 95vw;
+    max-width: 400px;
     height: 95vw;
+    max-height: 400px;
   }
   .nav {
     font-size: 35px;

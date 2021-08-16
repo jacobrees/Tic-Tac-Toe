@@ -205,7 +205,9 @@ body {
 
   .tic-tac-toe-board {
     width: 95vw;
+    max-width: 400px;
     height: 95vw;
+    max-height: 400px;
   }
 
   .nav {
