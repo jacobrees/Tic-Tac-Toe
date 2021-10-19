@@ -8,7 +8,7 @@
 
 # Live Preview
 
-[View Project](https://laughing-clarke-dd842a.netlify.app)
+### [View Website](https://laughing-clarke-dd842a.netlify.app)
 
 ## How To Play Tic Tac Toe
 
