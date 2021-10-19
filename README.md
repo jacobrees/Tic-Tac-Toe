@@ -6,7 +6,7 @@
 
 ![](screenshot/screenshot.png)
 
-# Live Preview
+# Live Website
 
 ### [View Website](https://laughing-clarke-dd842a.netlify.app)
 
